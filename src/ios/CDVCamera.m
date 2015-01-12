@@ -60,6 +60,7 @@ static NSSet* org_apache_cordova_validArrowDirections;
     pictureOptions.saveToPhotoAlbum = [[arguments objectAtIndex:9 withDefault:@(NO)] boolValue];
     pictureOptions.popoverOptions = [arguments objectAtIndex:10 withDefault:nil];
     pictureOptions.cameraDirection = [[arguments objectAtIndex:11 withDefault:@(UIImagePickerControllerCameraDeviceRear)] unsignedIntegerValue];
+    pictureOptions.cropToSize = [[arguments objectAtIndex:12 withDefault:@(NO)] boolValue];
     
     pictureOptions.popoverSupported = NO;
     pictureOptions.usesGeolocation = NO;
@@ -126,7 +127,6 @@ static NSSet* org_apache_cordova_validArrowDirections;
         CDVPictureOptions* pictureOptions = [CDVPictureOptions createFromTakePictureArguments:command.arguments];
         pictureOptions.popoverSupported = [self popoverSupported];
         pictureOptions.usesGeolocation = [self usesGeolocation];
-        pictureOptions.cropToSize = NO;
         
         BOOL hasCamera = [UIImagePickerController isSourceTypeAvailable:pictureOptions.sourceType];
         if (!hasCamera) {
